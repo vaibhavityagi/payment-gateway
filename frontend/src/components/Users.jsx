@@ -35,7 +35,7 @@ export default function Users() {
 
   // for pagination
   const [currPage, setCurrPage] = useState(1);
-  const [usersPerPage] = useState(2);
+  const [usersPerPage] = useState(5);
 
   const indexOfLastUser = currPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;

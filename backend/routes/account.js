@@ -69,7 +69,7 @@ router.post("/transfer", authMiddleware, async (req, res) => {
 });
 
 router.get("/transactions", authMiddleware, async (req, res) => {
-  const transactions = await Transaction.findOne({ userId: req.userId });
+  const transactions = await Transaction.find({ userId: req.userId });
   res.status(200).json({
     transactions,
   });

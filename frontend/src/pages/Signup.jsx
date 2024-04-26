@@ -3,19 +3,18 @@ import Heading from "../components/Heading";
 import SubHeading from "../components/SubHeading";
 import InputBox from "../components/InputBox";
 import ButtonWarning from "../components/ButtonWarning";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Signup({ isAuthenticated, setAuthenticated }) {
-  console.log(isAuthenticated);
+export default function Signup({ setIsAuthenticated }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  if (!isAuthenticated) navigate("/");
+  // console.dir(setIsAuthenticated);
 
   async function createUser() {
     const response = await axios.post(
@@ -28,7 +27,6 @@ export default function Signup({ isAuthenticated, setAuthenticated }) {
       }
     );
 
-    setAuthenticated(!isAuthenticated);
     localStorage.setItem("token", `Bearer ${response.data.token}`);
     navigate("/dashboard");
   }

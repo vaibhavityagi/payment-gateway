@@ -1,20 +1,28 @@
-import { Suspense } from "react";
 import Appbar from "../components/Appbar";
+import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 import Balance from "../components/Balance";
-import Users from "../components/Users";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="mx-32 my-10">
         <div>
           <Appbar></Appbar>
 
-          <div className="ml-4">
-            {/* <Suspense fallback={"loading..."}> */}
+          <div className="mx-3 mt-10">
             <Balance></Balance>
-            <Users></Users>
-            {/* </Suspense> */}
+            <div className="flex gap-5">
+              <Button
+                label="Other Users"
+                onClick={() => navigate("/friends")}
+              />
+              <Button
+                label="Transation History"
+                onClick={() => navigate("/transactions")}
+              />
+            </div>
           </div>
         </div>
       </div>

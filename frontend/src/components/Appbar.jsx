@@ -21,13 +21,17 @@ export default function Appbar() {
     <div>
       <div className="border-t-4 border-black"></div>
       <div className="flex border-b gap-x-2 font-medium p-2">
-        <div className="grow">PayTm App</div>
-        <div>Hello</div>
-        <div className="rounded-full bg-slate-300 w-7 h-7 text-sm flex items-center justify-center">
+        <div
+          className="grow font-oxygen font-bold cursor-pointer"
+          onClick={() => navigate("/dashboard")}
+        >
+          PayTm
+        </div>
+        <div className="rounded-full bg-slate-300 w-7 h-7 text-sm flex items-center justify-center font-oxygen">
           {userInfo.firstName}
         </div>
         <div
-          className="cursor-pointer"
+          className="cursor-pointer font-oxygen font-bold"
           onClick={() => {
             navigate("/signin");
             localStorage.clear();

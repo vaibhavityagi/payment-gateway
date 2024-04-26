@@ -5,9 +5,11 @@ import Dashboard from "./pages/Dashboard";
 import SendMoney from "./pages/SendMoney";
 import Home from "./components/Home";
 import { useState } from "react";
+import Transactions from "./pages/Transactions";
+import Friends from "./pages/Friends";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
     <>
       <BrowserRouter>
@@ -15,24 +17,31 @@ function App() {
           {/* signup logic not working */}
           <Route
             path="/signup"
-            element={
-              <SignUp
-                isAuthenticated={authenticated}
-                setAuthenticated={setAuthenticated}
-              />
-            }
+            element={<SignUp setIsAuthenticated={setIsAuthenticated} />}
           ></Route>
           <Route path="/signin" element={<SignIn />}></Route>
           <Route
             path="/dashboard"
             element={
-              authenticated ? <Dashboard /> : <Navigate replace to={"/"} />
+              isAuthenticated ? <Dashboard /> : <Navigate replace to={"/"} />
             }
           ></Route>
           <Route
             path="/send"
             element={
-              authenticated ? <SendMoney /> : <Navigate replace to={"/"} />
+              isAuthenticated ? <SendMoney /> : <Navigate replace to={"/"} />
+            }
+          ></Route>
+          <Route
+            path="/transactions"
+            element={
+              isAuthenticated ? <Transactions /> : <Navigate replace to={"/"} />
+            }
+          ></Route>
+          <Route
+            path="/friends"
+            element={
+              isAuthenticated ? <Friends /> : <Navigate replace to={"/"} />
             }
           ></Route>
           <Route path="/" element={<Home />}></Route>

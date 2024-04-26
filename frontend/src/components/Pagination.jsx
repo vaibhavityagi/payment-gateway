@@ -8,7 +8,7 @@ export default function Pagination({ usersPerPage, totalUsers, paginate }) {
   return (
     <>
       <div className="flex gap-1 mt-14 justify-center items-center">
-        <GoTriangleLeft />
+        {/* <GoTriangleLeft /> */}
         <div>
           {pageNumbers.map((number) => {
             return (
@@ -22,7 +22,7 @@ export default function Pagination({ usersPerPage, totalUsers, paginate }) {
             );
           })}
         </div>
-        <GoTriangleRight />
+        {/* <GoTriangleRight /> */}
       </div>
     </>
   );

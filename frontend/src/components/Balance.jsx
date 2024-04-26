@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function Balance() {
-  const [bal, setBal] = useState(0);
+  const [bal, setBal] = useState();
 
   useEffect(() => {
     const getBalance = async () => {
@@ -17,5 +17,5 @@ export default function Balance() {
     getBalance();
   }, []);
 
-  return <div className="font-bold my-2 text-lg">Your balance Rs {bal}</div>;
+  return <div className="font-bold my-2 text-3xl">Balance: Rs {bal}</div>;
 }
