@@ -26,6 +26,7 @@ export default function Users() {
           headers: {
             Authorization: localStorage.getItem("token"),
           },
+          withCredentials: true,
         }
       );
       const filteredUsers = result.data.users.filter(

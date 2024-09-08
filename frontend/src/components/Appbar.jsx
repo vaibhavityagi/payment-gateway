@@ -12,8 +12,8 @@ export default function Appbar() {
         {
           headers: {
             Authorization: localStorage.getItem("token"),
-            withCredentials: true,
           },
+          withCredentials: true,
         }
       );
       setUserInfo(response.data.user);
