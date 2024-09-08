@@ -14,7 +14,7 @@ export default function SignIn({ setIsLoggedIn }) {
 
   async function signinUser() {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/user/signin",
+      "https://payment-gateway-api.vercel.app/api/v1/user/signin",
       {
         email,
         password,
