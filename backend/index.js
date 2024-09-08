@@ -6,7 +6,12 @@ const PORT = 3000;
 const app = express();
 
 app.use(
-  cors();
+  cors({
+    origin: ["https://payment-gateway-nu-nine.vercel.app"],
+    methods: ["POST", "GET", "PUT"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/v1", rootRouter);
