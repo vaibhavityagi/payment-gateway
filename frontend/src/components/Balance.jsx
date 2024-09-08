@@ -7,9 +7,10 @@ export default function Balance() {
   useEffect(() => {
     const getBalance = async () => {
       const response = await axios.get(
-        "http://localhost:3000/api/v1/account/balance",
+        "https://payment-gateway-api.vercel.app/api/v1/account/balance",
         {
           headers: { Authorization: localStorage.getItem("token") },
+          withCredentials: true,
         }
       );
       setBal(response.data.balance);

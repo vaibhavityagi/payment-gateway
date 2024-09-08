@@ -13,18 +13,21 @@ export default function Users() {
   useEffect(() => {
     const getUsers = async () => {
       const result = await axios.get(
-        `http://localhost:3000/api/v1/user/bulk?filter=${debouncedValue}`,
+        `https://payment-gateway-api.vercel.app/api/v1/user/bulk?filter=${debouncedValue}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
           },
         }
       );
-      const me = await axios.get("http://localhost:3000/api/v1/user/me", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
+      const me = await axios.get(
+        "https://payment-gateway-api.vercel.app/api/v1/user/me",
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
       const filteredUsers = result.data.users.filter(
         (user) => user._id != me.data.user._id
       );

@@ -7,11 +7,15 @@ export default function Appbar() {
   const navigate = useNavigate();
   useEffect(() => {
     const currUserInfo = async () => {
-      const response = await axios.get("http://localhost:3000/api/v1/user/me", {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
+      const response = await axios.get(
+        "https://payment-gateway-api.vercel.app/api/v1/user/me",
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+            withCredentials: true,
+          },
+        }
+      );
       setUserInfo(response.data.user);
     };
     currUserInfo();
