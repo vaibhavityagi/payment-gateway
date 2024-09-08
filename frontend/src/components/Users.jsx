@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import User from "./User";
+import { Suspense, useEffect, useState, lazy } from "react";
 import axios from "axios";
 import useDebounce from "../hooks/useDebounce";
 import Pagination from "./Pagination";
+import User from "../components/User";
 
 export default function Users() {
   // users is initially an empty array
@@ -56,9 +56,11 @@ export default function Users() {
         onChange={(e) => setFilter(e.target.value)}
         value={filter}
       />
+
       {currentUsers.map((user, idx) => (
         <User user={user} key={idx}></User>
       ))}
+
       <Pagination
         usersPerPage={usersPerPage}
         totalUsers={users.length}

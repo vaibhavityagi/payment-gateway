@@ -33,6 +33,7 @@ export default function Appbar() {
         <div
           className="cursor-pointer font-oxygen font-bold"
           onClick={() => {
+            // add a are you sure screen?
             navigate("/signin");
             localStorage.clear();
           }}

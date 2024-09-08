@@ -14,10 +14,7 @@ export default function Dashboard() {
           <div className="mx-3 mt-10">
             <Balance></Balance>
             <div className="flex gap-5">
-              <Button
-                label="Other Users"
-                onClick={() => navigate("/friends")}
-              />
+              <Button label="Send Money" onClick={() => navigate("/friends")} />
               <Button
                 label="Transation History"
                 onClick={() => navigate("/transactions")}

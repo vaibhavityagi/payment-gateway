@@ -20,6 +20,7 @@ export default function Transactions() {
 
   return (
     <div>
+      <h2 className="font-bold text-lg my-1">Transaction History</h2>
       {trs.map((tr, idx) => (
         <Transation key={idx} tr={tr} />
       ))}

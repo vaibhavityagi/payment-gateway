@@ -5,43 +5,49 @@ import Dashboard from "./pages/Dashboard";
 import SendMoney from "./pages/SendMoney";
 import Home from "./components/Home";
 import { useState } from "react";
-import Transactions from "./pages/Transactions";
-import Friends from "./pages/Friends";
+import Redirect from "./pages/Redirect";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
       <BrowserRouter>
         <Routes>
-          {/* signup logic not working */}
+          <Route
+            path="/signin"
+            element={<SignIn setIsLoggedIn={setIsLoggedIn} />}
+          ></Route>
           <Route
             path="/signup"
-            element={<SignUp setIsAuthenticated={setIsAuthenticated} />}
+            element={<SignUp setIsLoggedIn={setIsLoggedIn} />}
           ></Route>
-          <Route path="/signin" element={<SignIn />}></Route>
+
           <Route
             path="/dashboard"
-            element={
-              isAuthenticated ? <Dashboard /> : <Navigate replace to={"/"} />
-            }
+            element={isLoggedIn ? <Dashboard /> : <Navigate replace to={"/"} />}
           ></Route>
           <Route
             path="/send"
-            element={
-              isAuthenticated ? <SendMoney /> : <Navigate replace to={"/"} />
-            }
+            element={isLoggedIn ? <SendMoney /> : <Navigate replace to={"/"} />}
           ></Route>
           <Route
             path="/transactions"
             element={
-              isAuthenticated ? <Transactions /> : <Navigate replace to={"/"} />
+              isLoggedIn ? (
+                <Redirect type="transactions" />
+              ) : (
+                <Navigate replace to={"/"} />
+              )
             }
           ></Route>
           <Route
             path="/friends"
             element={
-              isAuthenticated ? <Friends /> : <Navigate replace to={"/"} />
+              isLoggedIn ? (
+                <Redirect type="friends" />
+              ) : (
+                <Navigate replace to={"/"} />
+              )
             }
           ></Route>
           <Route path="/" element={<Home />}></Route>

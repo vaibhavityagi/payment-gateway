@@ -7,4 +7,8 @@ const accRouter = require("./account");
 router.use("/user", userRouter);
 router.use("/account", accRouter);
 
+router.get("/", (req, res) => {
+  message: "healthy server";
+});
+
 module.exports = router;
