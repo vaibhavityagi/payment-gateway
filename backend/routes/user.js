@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-
 const { z } = require("zod");
-const jwt = require("jsonwebtoken");
-
 const { User, Account } = require("../db");
 const JWT_SECRET = process.env.JWT_SECRET;
+const { SignJWT, jwtVerify } = require("jose");
 const { authMiddleware } = require("../middleware");
+
+function getKey() {
+  return new TextEncoder().encode(JWT_SECRET);
+}
 
 const signupSchema = z.object({
   email: z.string().min(3).max(30).email(),
@@ -62,6 +64,15 @@ async function existingUser(req, res, next) {
   next();
 }
 
+async function createToken(userId) {
+  const secretKey = getKey();
+  return await new SignJWT({ userId })
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("2h")
+    .sign(secretKey);
+}
+
 router.post("/signup", validateSignupBody, existingUser, async (req, res) => {
   const { email, firstName, lastName, password } = req.body;
   const hashedPW = await bcrypt.hash(password, 10);
@@ -77,7 +88,7 @@ router.post("/signup", validateSignupBody, existingUser, async (req, res) => {
     balance: Math.floor(Math.random() * 1000000),
   });
 
-  const token = jwt.sign({ userId: savedUser._id }, JWT_SECRET);
+  const token = await createToken(savedUser._id);
 
   res.status(200).json({
     message: "User created successfully",
@@ -94,7 +105,7 @@ router.post("/signin", validateSigninBody, async (req, res) => {
     // checking the password
     const match = await bcrypt.compare(password, user.password);
     if (match) {
-      const token = jwt.sign({ userId: user._id }, JWT_SECRET);
+      const token = await createToken(user._id);
       return res.status(200).json({
         token,
       });
