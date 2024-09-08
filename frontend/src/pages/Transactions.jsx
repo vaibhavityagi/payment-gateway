@@ -7,7 +7,7 @@ export default function Transactions() {
   useEffect(() => {
     const getHistory = async () => {
       const data = await axios.get(
-        "http://localhost:3000/api/v1/account/transactions",
+        "https://payment-gateway-api.vercel.app/api/v1/account/transactions",
         {
           headers: { Authorization: localStorage.getItem("token") },
         }
