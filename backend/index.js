@@ -19,4 +19,8 @@ app.use(express.json());
 
 app.use("/api/v1", rootRouter);
 
+app.get("/", (req, res) => {
+  return res.json({ message: "healthy server" });
+});
+
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
