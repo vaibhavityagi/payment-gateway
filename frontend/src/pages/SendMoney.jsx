@@ -11,7 +11,7 @@ export default function SendMoney() {
 
   async function transferMoney() {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/account/transfer",
+      "https://payment-gateway-api.vercel.app/api/v1/account/transfer",
       {
         to: id,
         amount,
