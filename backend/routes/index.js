@@ -8,7 +8,7 @@ router.use("/user", userRouter);
 router.use("/account", accRouter);
 
 router.get("/", (req, res) => {
-  message: "healthy server";
+  return res.json({ message: "healthy server" });
 });
 
 module.exports = router;
